@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan Fadlan & Go Youn-jung</title>
+    <style>
+        /* ======================================================
+           CSS GLOBAL & FONT
+           ====================================================== */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap'); /* IMPOR FONT SACRAMENTO */
+
+        :root {
+            --primary-color: #8b4513; /* Coklat Tanah/Emas */
+            --secondary-color: #f9b2f0; /* Krem Muda */
+            --text-color: #070707;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Roboto', sans-serif;
+            --font-script: 'Sacramento', cursive; /* Variabel untuk Sacramento */
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            overflow-x: hidden;
+        }
+
+        /* ======================================================
+           LAYAR PEMBUKA (OPENING SCREEN)
+           ====================================================== */
+        #openingScreen {
+            background-image: url('wedding.jpg'); /* Ganti dengan nama file gambar Anda */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: rgb(9, 9, 9);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+            transition: opacity 1s ease-out;
+        }
+
+        #openingScreen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4); /* Overlay gelap */
+        }
+
+        #openingScreen * {
+            position: relative;
+            z-index: 10;
+        }
+
+        #openingScreen h1 {
+            font-family: var(--font-serif);
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        #openingScreen p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        #openButton {
+            padding: 12px 30px;
+            font-size: 1.1em;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #openButton:hover {
+            background-color: #a0522d;
+        }
+
+        /* ======================================================
+           UNDANGAN UTAMA (MAIN INVITATION)
+           ====================================================== */
+        #mainInvitation {
+            display: none;
+            padding: 0 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        h2 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+        }
+
+        .couple-names {
+            font-family: var(--font-script); /* DIGANTI KE FONT SACRAMENTO */
+            font-size: 4em; /* Diperbesar agar lebih menonjol */
+            font-weight: 400; /* Sacramento tidak punya bold */
+            color: var(--primary-color);
+            margin: 10px 0;
+            line-height: 1.1;
+        }
+
+        .parent-info {
+            font-style: italic;
+            font-size: 0.9em;
+            color: #121111;
+        }
+
+        /* ======================================================
+           COUNTDOWN
+           ====================================================== */
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .countdown-box {
+            background-color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            min-width: 80px;
+        }
+
+        .countdown-number {
+            font-family: var(--font-serif);
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 0.8em;
+            text-transform: uppercase;
+            margin-top: 5px;
+            color: #777;
+        }
+
+        /* ======================================================
+           AKAD & RESEPSI (JADWAL)
+           ====================================================== */
+        .schedule-table {
+            width: 100%;
+            max-width: 500px;
+            margin: 30px auto;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .schedule-table th, .schedule-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .schedule-table th {
+            color: var(--primary-color);
+            font-weight: 700;
+            width: 30%;
+        }
+
+        .schedule-table td {
+            font-weight: 400;
+        }
+
+        .maps-link {
+            display: block;
+            margin-top: 10px;
+            color: #1e90ff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* ======================================================
+           KUTIPAN SUCI
+           ====================================================== */
+        .quran-quote {
+            max-width: 600px;
+            margin: 40px auto;
+            font-style: italic;
+            padding: 20px;
+            border-left: 5px solid var(--primary-color);
+            background-color: #f9f9f9;
+            text-align: justify;
+        }
+
+        .quran-quote p {
+            margin-bottom: 15px;
+        }
+
+        .quran-quote strong {
+            display: block;
+            text-align: right;
+            margin-top: 10px;
+            font-style: normal;
+            color: var(--primary-color);
+        }
+
+        /* ======================================================
+           HADIAH & UCAPAN
+           ====================================================== */
+        .gift-info {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        .gift-info p {
+            margin: 5px 0;
+            font-size: 1.1em;
+        }
+
+        .rek-number {
+            font-family: var(--font-serif);
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 10px 0;
+        }
+
+        .copy-button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .copy-button:hover {
+            background-color: #218838;
+        }
+
+        /* Simulasi Form Ucapan */
+        .guestbook-form input, .guestbook-form textarea {
+            width: calc(100% - 20px);
+            max-width: 400px;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .guestbook-form button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* ======================================================
+           SCROLL POP-UP EFFECT (FADE IN)
+           ====================================================== */
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .scroll-fade.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .export-btn {
+            background: #32CD32; /* Hijau untuk ekspor */
+            color: white;
+            margin: 10px;
+        }
+        .export-btn:hover {
+            background: #228B22;
+        }
+
+        /* ======================================================
+           MEDIA QUERIES (Responsif Sederhana)
+           ====================================================== */
+        @media (max-width: 600px) {
+            #openingScreen h1 {
+                font-size: 2em;
+            }
+            .couple-names {
+                font-size: 3em;
+            }
+            .countdown-box {
+                padding: 10px 15px;
+            }
+            .countdown-number {
+                font-size: 1.8em;
+            }
+            .schedule-table th, .schedule-table td {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+            .schedule-table th {
+                padding-bottom: 0;
+            }
+            .schedule-table td {
+                padding-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="openingScreen">
+        <h1>The wedding </h1>
+        <p>Fadlan & GoYounjong </p>
+        <p>Kepada Yth. Bapak/Ibu/Saudara/i</p>
+        <button id="openButton">Buka Undangan</button>
+    </div>
+    
+    <div id="mainInvitation">
+
+        <section class="scroll-fade">
+            <p>Dengan memanjatkan puji syukur kehadirat Allah SWT, kami memohon rahmat dan ridho-Nya untuk melangsungkan pernikahan putra-putri kami:</p>
+            <h2 class="couple-names">Fadlan</h2>
+            <p class="parent-info">Putra kedua dari Bapak Rafi  & Ibu rini </p>
+
+            <h2 class="couple-names">&</h2>
+
+            <h2 class="couple-names">GoYounjong</h2>
+            <p class="parent-info">Putri pertama dari Bapak ali & Ibu Lissa</p>
+        </section>
+       
+        <section>
+            <section class="scroll-fade">
+                <h2>foto pernikahan kedua Pengantin</h2>
+                <div class="image-container"><div class="background-image"></div>
+                <img src="nikah.jpg">
+                <img src="nikah2.jpg">
+                <img src="nikah3..jpg">
+                <img src="nikah4.jpg">
+            </section>
+        </section>
+        <section class="scroll-fade">
+            <h2>Hitung Mundur Menuju Janji Suci</h2>
+            <div class="countdown-timer" id="countdown">
+                <div class="countdown-box"><div class="countdown-number" id="days">00</div><div class="countdown-label">Hari</div></div>
+                <div class="countdown-box"><div class="countdown-number" id="hours">00</div><div class="countdown-label">Jam</div></div>
+                <div class="countdown-box"><div class="countdown-number" id="minutes">00</div><div class="countdown-label">Menit</div></div>
+                <div class="countdown-box"><div class="countdown-number" id="seconds">00</div><div class="countdown-label">Detik</div></div>
+            </div>
+        </section>
+
+        <section class="scroll-fade">
+            <h2> Akad Nikah & Resepsi</h2>
+
+            <h3>Akad Nikah</h3>
+            <table class="schedule-table">
+                <tr><th>Hari, Tanggal</th><td>Rabu, 10 Desember 2025</td></tr>
+                <tr><th>Waktu</th><td>Pukul 09.00 WIB</td></tr>
+                <tr><th>Tempat</th><td>Gedung serbaguna, Jakarta</td></tr>
+                <tr><th>Peta Lokasi</th><td><a href="https://maps.app.goo.gl/sk2nvKYPibdQbLwx5" target="_blank" class="maps-link">Lihat di Google Maps</a></td></tr>
+            </table>
+
+            <h3>Resepsi Pernikahan</h3>
+            <table class="schedule-table">
+                <tr><th>Hari, Tanggal</th><td>Rabu, 10 Desember 2025</td></tr>
+                <tr><th>Waktu</th><td>Pukul 11.00 WIB – Selesai</td></tr>
+                <tr><th>Tempat</th><td>Gedung serbaguna, Jakarta</td></tr>
+                <tr><th>Peta Lokasi</th><td><a href="#" target="_blank" class="maps-link">Lihat di Google Maps</a></td></tr>
+            </table>
+        </section>
+
+        <section class="scroll-fade">
+            <h2> Kutipan Suci</h2>
+            <div class="quran-quote">
+                <p>وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ</p>
+                <p>“Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.”</p>
+                <strong>(QS. Ar-Rum: 21)</strong>
+            </div>
+        </section>
+
+        <section class="scroll-fade">
+            <h2> Doa & Ucapan</h2>
+            <p>Kehadiran dan doa restu Bapak/Ibu/Saudara/i merupakan kehormatan terbesar bagi kami.</p>
+
+            <div class="guestbook-form">
+                <h4>Kirim Ucapan dan Doa</h4>
+                <input type="text" placeholder="Nama Anda" required>
+                <textarea placeholder="Tuliskan Doa & Ucapan Terbaik Anda..." rows="4" required></textarea>
+                <button type="button" onclick="alert('Terima kasih! Ucapan Anda tersimpan (lihat).')">Kirim Doa & Ucapan</button>
+            </div>
+        </section>
+
+        <section class="scroll-fade">
+            <h2> Amplop Digital</h2>
+            <p>Bagi yang ingin memberikan tanda kasih, dapat disalurkan melalui:</p>
+            <div class="gift-info">
+                <p>BANK BCA</p>
+                <p>Nomor Rekening:</p>
+                <p class="rek-number" id="rekening">0876885821</p>
+                <p>Atas Nama:Fadlan ganteng</p>
+                <button class="copy-button" onclick="copyToClipboard('rekening')">Salin Nomor Rekening</button>
+            </div>
+        </section>
+
+         <section>
+            <!-- RSVP & Ekspor -->
+        <div class="section">
+            <h3>Konfirmasi Kehadiran</h3>
+            <div class="rsvp">
+                <label><input type="radio" name="rsvp" value="hadir" onchange="simpanRSVP()"> Hadir</label>
+                <label><input type="radio" name="rsvp" value="tidak" onchange="simpanRSVP()"> Tidak Hadir</label>
+            </div>
+            <p id="rsvp-status">Status RSVP Anda: Belum dikonfirmasi</p>
+            <button class="export-btn" onclick="eksporData()"> Data kehadiran akan bisa di lit di sini</button>
+            <p><small>Data ucapan & RSVP akan diunduh sebagai file kehadiran. Buka di Excel</small></p>
+        </div>
+         </section>
+
+        <section class="scroll-fade" style="padding-top: 20px;">
+            <p style="font-style: italic;">Atas kehadiran dan doa restu yang diberikan, kami ucapkan terima kasih.</p>
+            <h3 style="color: var(--primary-color); margin-top: 30px;">Wassalamualaikum Warahmatullahi Wabarakatuh</h3>
+            <p>Hormat kami yang berbahagia,</p>
+            <p style="font-family: var(--font-script); font-size: 2em; margin-top: 5px; color: var(--primary-color);">Fadlan & GoYounjung</p>
+        </section>
+        
+    </div>
+
+    <script>
+        // TARGET TANGGAL AKAD (10 Desember 2025, 09:00:00 WIB)
+        const targetDate = new Date("Dec 10, 2025 09:00:00").getTime();
+
+        // FUNGSI HITUNG MUNDUR
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            // Jika hitungan mundur selesai
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("countdown").innerHTML = "<p class='countdown-number' style='font-size:1.5em;'>AKAD SEDANG BERLANGSUNG! Selamat Berbahagia!</p>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Tampilkan hasilnya (dengan padding nol)
+            document.getElementById("days").innerHTML = String(days).padStart(2, '0');
+            document.getElementById("hours").innerHTML = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerHTML = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerHTML = String(seconds).padStart(2, '0');
+        }
+
+        // Jalankan hitungan mundur setiap 1 detik
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown(); // Jalankan sekali segera
+
+        // FUNGSI BUKA UNDANGAN & PUTAR MUSIK
+        const audio = new Audio('surat cinta.mp3'); // Ganti URL musik Anda
+        audio.loop = true;
+
+        document.getElementById('openButton').addEventListener('click', function() {
+            document.getElementById('openingScreen').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('openingScreen').style.display = 'none';
+                document.getElementById('mainInvitation').style.display = 'block';
+                // Coba putar musik. AutoPlay sering diblokir, tapi ini adalah upaya.
+                audio.play().catch(e => console.log("Gagal AutoPlay: " + e));
+                // Jalankan observer setelah undangan terbuka
+                initScrollObserver();
+            }, 1000);
+        });
+
+        // Ucapan Interaktif
+        let ucapanList = JSON.parse(localStorage.getItem('ucapanFadlan')) || [];
+        function renderUcapan() {
+            const list = document.getElementById('ucapan-list');
+            list.innerHTML = ucapanList.map(ucapan => `<p>${ucapan}</p>`).join('') || '<p>Ucapan yang sudah masuk akan tampil di sini.</p>';
+        }
+        function kirimUcapan(event) {
+            event.preventDefault();
+            const input = document.getElementById('ucapan-input');
+            const ucapan = input.value.trim();
+            if (ucapan) {
+                ucapanList.push(ucapan);
+                localStorage.setItem('ucapanFadlan', JSON.stringify(ucapanList));
+                input.value = '';
+                renderUcapan();
+            }
+        }
+        renderUcapan(); // Load ucapan awal
+
+        // RSVP
+        function simpanRSVP() {
+            const selected = document.querySelector('input[name="rsvp"]:checked');
+            if (selected) {
+                localStorage.setItem('rsvpFadlan', selected.value);
+                document.getElementById('rsvp-status').innerHTML = `Status RSVP Anda: ${selected.value === 'hadir' ? 'Hadir! 🎊' : 'Tidak Hadir 😔'}`;
+            }
+        }
+        // Load RSVP awal
+        const savedRSVP = localStorage.getItem('rsvpFadlan');
+        if (savedRSVP) {
+            document.querySelector(`input[name="rsvp"][value="${savedRSVP}"]`).checked = true;
+            simpanRSVP();
+        }
+
+        // Ekspor Data ke CSV (untuk Spreadsheet)
+        function eksporData() {
+            const ucapan = JSON.parse(localStorage.getItem('ucapanFadlan')) || [];
+            const rsvp = localStorage.getItem('rsvpFadlan') || 'Belum dikonfirmasi';
+            let csvContent = 'data:text/csv;charset=utf-8,';
+            csvContent += 'Tipe Data,Ucapan/Status,Detail\n'; // Header CSV
+
+            // Ekspor Ucapan
+            ucapan.forEach((ucap, index) => {
+                csvContent += `Ucapan,${index + 1},${ucap.replace(/"/g, '""')}\n`;
+            });
+
+            // Ekspor RSVP
+            csvContent += `RSVP,-,Status: ${rsvp}\n`;
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', 'data-undangan-fadlan.csv');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            alert('Data diekspor sebagai CSV! Buka file di spreadsheet Anda.');
+        }
+
+        // FUNGSI COPY REKENING
+        function copyToClipboard(elementId) {
+            const copyText = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(copyText).then(() => {
+                alert("Nomor rekening berhasil disalin: " + copyText);
+            }).catch(err => {
+                console.error('Gagal menyalin: ', err);
+                alert("Gagal menyalin. Silakan salin manual: " + copyText);
+            });
+        }
+
+        // FUNGSI SCROLL POP-UP (Intersection Observer)
+        function initScrollObserver() {
+            const elements = document.querySelectorAll('.scroll-fade');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            }, {
+                rootMargin: '0px',
+                threshold: 0.1 // Berapa persen elemen yang harus terlihat
+            });
+
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+    </script>
+
+</body>
+</html>
