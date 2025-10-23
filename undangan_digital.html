@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan Fadlan & Goyounjong</title>
+    
+    <!-- Bootstrap 5 CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- Google Fonts for Elegant Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        /* PALET WARNA BARU: Deep Maroon & Classic Gold */
+        :root {
+            --primary-color: #5D001E; /* Deep Burgundy/Maroon */
+            --secondary-color: #fc92ec; /* Soft Light Gray Background */
+            --accent-color: #FFD700; /* Classic Gold Accent */
+            --text-color: #0e0f0f; /* Dark Slate/Navy for contrast */
+            --heading-font: 'Great Vibes', cursive;
+            --body-font: 'Poppins', sans-serif;
+        }
+
+        body {
+            font-family: var(--body-font);
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+            /* Latar belakang yang lebih kaya dan elegan */
+            background-image: url('bungga.png');
+            background-size: cover;
+             background-position: center;
+            background-attachment: fixed;
+            background-attachment: fixed;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .section-bg {
+            background-color: rgba(251, 210, 240, 0.98); /* Lebih putih untuk kontras */
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Bayangan yang lebih lembut */
+            margin-bottom: 40px;
+            padding: 50px 20px;
+        }
+
+        .heading-title {
+            font-family: var(--heading-font);
+            font-size: 3.8rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .sub-heading {
+            font-size: 1.3rem;
+            color: var(--primary-color); /* Menggunakan Maroon untuk sub-heading */
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        /* --- SCROLL ANIMATION STYLES BARU --- */
+        .animated-section {
+            opacity: 0;
+            transform: translateY(20px); /* Kurangi jarak slide */
+            /* Transisi lebih cepat dan halus */
+            transition: opacity 0.7s ease-out, transform 0.6s ease-out; 
+        }
+        
+        .animated-section.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* -------------------------------- */
+
+
+        /* Intro Screen - UPDATE DENGAN FOTO PASANGAN */
+        #intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* FOTO LATAR BELAKANG */
+            background-image: url('wedding.jpg'); 
+            background-size: cover;
+            background-position: center;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            color: white; /* Pastikan teks terlihat di atas gambar */
+        }
+        
+        /* Overlay agar teks terlihat jelas */
+        #intro-screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Overlay semi-transparan gelap */
+            z-index: -1;
+        }
+        
+        #intro-screen h1 {
+            font-family: var(--heading-font);
+            font-size: 5rem;
+            color: var(--accent-color); /* Judul Emas */
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        #intro-screen p {
+            color: #FFFAFA; /* Teks putih bersih */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Tombol dengan warna Maroon/Emas */
+        .btn-romantic {
+            background-color: var(--primary-color);
+            color: white;
+            border: 2px solid var(--primary-color);
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(93, 0, 30, 0.4);
+            z-index: 10;
+        }
+
+        .btn-romantic:hover {
+            background-color: var(--accent-color); /* Hover ke Gold */
+            color: var(--primary-color); /* Teks menjadi Maroon saat hover */
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6);
+            border-color: var(--accent-color);
+        }
+        
+        #intro-screen .sub-heading {
+            color: var(--accent-color) !important;
+            font-size: 2rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Countdown Style */
+        .countdown-item span {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-color); /* Angka Countdown berwarna Gold */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .countdown-item small {
+            font-size: 0.9rem;
+        }
+
+        /* Couple Image Styling */
+        .couple-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent-color); /* Border Gold */
+            box-shadow: 0 0 0 8px rgba(255, 215, 0, 0.2);
+            margin-bottom: 15px;
+        }
+        
+        /* Elegant Divider dengan Gold */
+        .elegant-divider {
+            font-family: var(--heading-font);
+            font-size: 4rem;
+            color: var(--accent-color);
+            margin: 20px 0;
+            line-height: 0.5;
+        }
+        
+        /* Floating Music Control */
+        #music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1010;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+        #music-control:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        /* Hadiah Online */
+        .gift-box {
+            background-color: #FAFAFA; /* Lighter background */
+        }
+        
+        .copy-button {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+        
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            #intro-screen h1 {
+                font-size: 4rem;
+            }
+            .heading-title {
+                font-size: 3rem;
+            }
+            .countdown-item span {
+                font-size: 2rem;
+            }
+            .couple-photo {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. INTRO SCREEN (Landing Page) - KINI DENGAN FOTO LATAR BELAKANG -->
+    <div id="intro-screen">
+        <p class="mb-2">The Wedding of</p>
+        <h1 class="animate__animated animate__zoomIn">Fadlan & Goyounjong</h1>
+        <p class="mb-4">Kepada Yth.<br>Bapak/Ibu/Saudara/i:</p>
+        <!-- Placeholder for Guest Name (Can be dynamically inserted) -->
+        <h4 class="sub-heading mb-4">IBU ELA</h4>
+        <button id="open-invitation" class="btn btn-romantic">
+            <i class="fas fa-envelope-open me-2"></i> Open Undangan
+        </button>
+    </div>
+
+    <!-- 2. MAIN CONTENT (Hidden until opened) -->
+    <div id="main-content" style="display:none;" class="container-fluid py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+
+                <!-- COVER/HEADER SECTION -->
+                <section id="header" class="section-bg text-center animated-section" data-delay="0">
+                    <p class="sub-heading">We Are Getting Married</p>
+                    <h1 class="heading-title">Fadlan & Goyounjong</h1>
+                    <p class="text-muted mt-4">Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.</p>
+                </section>
+
+                <!-- AR RUM 21 VERSE -->
+                <section id="ar-rum" class="section-bg text-center animated-section" data-delay="100">
+                    <h2 class="sub-heading mb-4 text-primary">Cinta & Kasih Sayang</h2>
+                    <p style="font-style: italic; font-size: 1.1rem; line-height: 1.8; color: var(--text-color);">
+                        "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
+                    </p>
+                    <p class="mt-3" style="font-weight: 600;">(QS. Ar-Rum Ayat 21)</p>
+                </section>
+                
+                <div class="text-center elegant-divider mb-4 animated-section" data-delay="150">&sdot;</div>
+
+                <!-- GROOM & BRIDE DETAILS -->
+                <section id="couple-info" class="section-bg text-center animated-section" data-delay="200">
+                    <div class="row">
+                        <!-- Groom Details -->
+                        <div class="col-md-6 mb-4 mb-md-0">
+                            <img src="fadlan.jpg" class="couple-photo" alt="Fadlan">
+                            <h2 class="heading-title" style="font-size: 3rem;">Fadlan</h2>
+                            <p class="text-muted">Putra dari:</p>
+                            <p class="fw-bold">Bapak Joko & Ibu Siti</p>
+                        </div>
+                        
+                        <!-- Separator -->
+                        <div class="col-12 d-md-none text-center my-4">
+                            <span class="elegant-divider my-0">&</span>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="gyj.jpg" class="couple-photo" alt="Goyounjong">
+                            <h2 class="heading-title" style="font-size: 3rem;">Goyounjong</h2>
+                            <p class="text-muted">Putri dari:</p>
+                            <p class="fw-bold">Bapak Ali & Ibu Rani</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="text-center elegant-divider mb-4 animated-section" data-delay="250">&sdot;</div>
+
+
+                <!-- COUNTDOWN TIMER -->
+                <section id="countdown" class="section-bg text-center animated-section" data-delay="300">
+                    <h2 class="sub-heading mb-4">Menghitung Hari Bahagia</h2>
+                    <div id="timer" class="d-flex justify-content-center">
+                        <div class="countdown-item mx-2"><span id="days">00</span><small>Hari</small></div>
+                        <div class="countdown-item mx-2"><span id="hours">00</span><small>Jam</small></div>
+                        <div class="countdown-item mx-2"><span id="minutes">00</span><small>Menit</small></div>
+                        <div class="countdown-item mx-2"><span id="seconds">00</span><small>Detik</small></div>
+                    </div>
+                </section>
+
+                <!-- EVENT DETAILS & LOCATION -->
+                <section id="event" class="section-bg text-center animated-section" data-delay="350">
+                    <h2 class="sub-heading mb-4">Detail Acara</h2>
+                    
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="card shadow-sm border-0 mb-4" style="border-left: 5px solid var(--accent-color) !important;">
+                                <div class="card-body">
+                                    <h4 class="sub-heading mt-2" style="color: var(--primary-color);">Akad Nikah</h4>
+                                    <p class="mb-1 fw-bold text-dark"><i class="far fa-calendar-alt text-muted me-2"></i> Rabu, 21 Desember 2025</p>
+                                    <p class="mb-1"><i class="far fa-clock text-muted me-2"></i> Pukul 09:00 WIB - Selesai</p>
+                                    <p class="mb-3"><i class="fas fa-map-marker-alt text-muted me-2"></i> Gedung Serbaguna Jakarta</p>
+                                    
+                                    <div class="d-flex justify-content-center gap-2 mt-3">
+                                        <a href="https://maps.app.goo.gl/sk2nvKYPibdQbLwx5" target="_blank" class="btn btn-sm btn-romantic px-4">
+                                            <i class="fas fa-route me-2"></i> Petunjuk Arah
+                                        </a>
+                                        <!-- Tombol Simpan Tanggal menggunakan warna aksen Gold -->
+                                        <button id="save-date-btn" class="btn btn-sm btn-romantic px-4" style="background-color: var(--accent-color); color: var(--primary-color); border-color: var(--accent-color);">
+                                            <i class="fas fa-calendar-plus me-2"></i> Simpan Tanggal
+                                        </button>
+                                    </div>
+                                    <p id="save-date-message" class="small text-muted mt-2" style="display: none;">Tanggal telah disalin. Silakan buat acara di kalender Anda secara manual.</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="text-center elegant-divider mb-4 animated-section" data-delay="400">&sdot;</div>
+
+                <!-- PHOTO GALLERY -->
+                <section id="gallery" class="section-bg text-center animated-section" data-delay="450">
+                    <h2 class="sub-heading mb-4">Galeri Momen Indah</h2>
+                    <div class="row g-3">
+                        <div class="col-6 col-md-4">
+                            <div class="gallery-item">
+                                <img src="nikah.jpg" class="img-fluid rounded shadow-sm" alt="Galeri 1">
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="gallery-item">
+                                <img src="nikah2.jpg" class="img-fluid rounded shadow-sm" alt="Galeri 2">
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="gallery-item">
+                                <img src="nikah3..jpg" class="img-fluid rounded shadow-sm" alt="Galeri 3">
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="gallery-item">
+                                <img src="nikah4.jpg" class="img-fluid rounded shadow-sm" alt="Galeri 4">
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="gallery-item">
+                                <img src="download.jpg" class="img-fluid rounded shadow-sm" alt="Galeri 5">
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="gallery-item">
+                                <img src="wedding.jpg" class="img-fluid rounded shadow-sm" alt="Galeri 6">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="text-center elegant-divider mb-4 animated-section" data-delay="500">&sdot;</div>
+
+                <!-- RSVP/KEHADIRAN TAMU -->
+                <section id="rsvp" class="section-bg text-center animated-section" data-delay="550">
+                    <h2 class="sub-heading mb-4">Konfirmasi Kehadiran</h2>
+                    <p class="text-muted">Mohon informasikan kehadiran Anda melalui formulir di bawah ini agar kami dapat mempersiapkan tempat dengan baik.</p>
+                    
+                    <form id="rsvpForm" class="mx-auto" style="max-width: 400px;">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Nama Anda" required>
+                        </div>
+                        <div class="mb-3">
+                            <select class="form-select" required>
+                                <option value="" disabled selected>Konfirmasi Kehadiran</option>
+                                <option value="Hadir">Insya Allah Hadir</option>
+                                <option value="Tidak">Mohon Maaf, Belum Bisa Hadir</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <input type="number" class="form-control" placeholder="Jumlah Tamu (termasuk Anda)">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="3" placeholder="Pesan & Doa untuk Pengantin"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-romantic w-100">Kirim Konfirmasi</button>
+                    </form>
+                    <div id="rsvp-message" class="mt-3 text-success" style="display: none; color: var(--primary-color) !important; font-weight: 600;">Terima kasih atas konfirmasi Anda!</div>
+                </section>
+
+                <div class="text-center elegant-divider mb-4 animated-section" data-delay="600">&sdot;</div>
+
+                <!-- ONLINE GIFT / HADIAH ONLINE -->
+                <section id="gift" class="section-bg text-center animated-section" data-delay="650">
+                    <h2 class="sub-heading mb-4">Hadiah Online</h2>
+                    <p class="text-muted">Kehadiran adalah hadiah terbaik. Namun, jika Anda ingin memberikan tanda kasih, dapat melalui rekening berikut:</p>
+                    
+                    <div class="gift-box mx-auto p-4 rounded-3 shadow-sm" style="max-width: 350px; border: 1px solid #eee;">
+                        <p class="mb-1 text-uppercase fw-bold" style="color: var(--primary-color);">BANK BCA</p>
+                        <div class="d-flex justify-content-center align-items-center mb-2">
+                            <span id="rekening-number" class="fs-3 me-3 fw-bold" style="color: var(--accent-color);">928473</span>
+                            <i id="copy-btn" class="far fa-copy copy-button" title="Salin Nomor Rekening"></i>
+                        </div>
+                        <p class="mb-0">a.n. Fadlan</p>
+                    </div>
+                    <div id="copy-message" class="mt-2 text-success" style="display: none; color: var(--primary-color) !important; font-weight: 600;">Nomor rekening berhasil disalin!</div>
+                </section>
+
+                <!-- FOOTER -->
+                <section class="text-center pt-4 animated-section" data-delay="700">
+                    <p class="text-muted small">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.</p>
+                    <p class="mb-0 fw-bold fs-5" style="color: var(--primary-color);">Wassalamu'alaikum Warahmatullahi Wabarakatuh</p>
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FLOATING MUSIC CONTROL BUTTON -->
+    <div id="music-control" style="display: none;">
+        <i id="music-icon" class="fas fa-music"></i>
+    </div>
+
+    <!-- AUDIO PLAYER -->
+    <audio id="background-music" loop>
+        <source src="surat cinta.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const introScreen = document.getElementById('intro-screen');
+            const mainContent = document.getElementById('main-content');
+            const openButton = document.getElementById('open-invitation');
+            const audio = document.getElementById('background-music');
+            const musicControl = document.getElementById('music-control');
+            const musicIcon = document.getElementById('music-icon');
+            const saveDateBtn = document.getElementById('save-date-btn');
+            const saveDateMessage = document.getElementById('save-date-message');
+            
+            // Tanggal target untuk Countdown
+            const targetDate = new Date("December 21, 2025 09:00:00").getTime();
+            
+            // --- SCROLL ANIMATION FUNCTIONALITY (Ditingkatkan dengan Staggered Delay) ---
+            const sections = document.querySelectorAll('.animated-section');
+            
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Ambil delay dari atribut data-delay. Default 0 jika tidak ada.
+                        const delay = parseInt(entry.target.getAttribute('data-delay')) || 0;
+
+                        // Gunakan setTimeout untuk menunda penambahan kelas, menciptakan efek berjenjang (staggered)
+                        setTimeout(() => {
+                            entry.target.classList.add('in-view');
+                        }, delay);
+                        
+                        // Hentikan pengamatan setelah muncul agar animasi tidak terulang saat scroll balik
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                // Margin root. Animasi akan dimulai saat elemen berada 10% dari bawah viewport.
+                rootMargin: '0px 0px -10% 0px', 
+                threshold: 0.1 // Setidaknya 10% elemen terlihat
+            });
+
+            function setupScrollAnimation() {
+                sections.forEach(section => {
+                    observer.observe(section);
+                });
+            }
+            // ------------------------------------------
+
+            // --- 1. INTRO SCREEN & MUSIC CONTROL ---
+            openButton.addEventListener('click', () => {
+                introScreen.style.opacity = 0;
+                setTimeout(() => {
+                    introScreen.style.display = 'none';
+                    mainContent.style.display = 'block';
+                    musicControl.style.display = 'flex';
+                    
+                    // Panggil fungsi animasi setelah konten utama ditampilkan
+                    setupScrollAnimation(); 
+
+                    // Play music
+                    audio.volume = 0.4;
+                    audio.play().catch(e => console.log("Audio autoplay failed:", e));
+
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 500); 
+            });
+
+            musicControl.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play();
+                    musicIcon.classList.replace('fa-volume-mute', 'fa-music');
+                } else {
+                    audio.pause();
+                    musicIcon.classList.replace('fa-music', 'fa-volume-mute');
+                }
+            });
+
+            // --- 2. COUNTDOWN TIMER ---
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                const formatTime = (time) => String(time).padStart(2, '0');
+
+                if (distance > 0) {
+                    document.getElementById("days").innerHTML = formatTime(days);
+                    document.getElementById("hours").innerHTML = formatTime(hours);
+                    document.getElementById("minutes").innerHTML = formatTime(minutes);
+                    document.getElementById("seconds").innerHTML = formatTime(seconds);
+                } else {
+                    clearInterval(countdownInterval);
+                    document.getElementById("timer").innerHTML = "<p class='fs-4 fw-bold' style='color: var(--accent-color);'>Acara Sedang Berlangsung!</p>";
+                }
+            }
+
+            const countdownInterval = setInterval(updateCountdown, 1000);
+            updateCountdown();
+
+            // --- 3. RSVP FORM HANDLING (Placeholder) ---
+            const rsvpForm = document.getElementById('rsvpForm');
+            const rsvpMessage = document.getElementById('rsvp-message');
+
+            rsvpForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Dalam aplikasi nyata, data ini akan dikirim ke Firestore/Database
+                console.log("Konfirmasi Kehadiran Dikirim!");
+
+                rsvpForm.reset();
+                rsvpMessage.style.display = 'block';
+                setTimeout(() => rsvpMessage.style.display = 'none', 5000);
+            });
+            
+            // --- 4. COPY REKENING FEATURE ---
+            const copyBtn = document.getElementById('copy-btn');
+            const rekeningNumber = document.getElementById('rekening-number').textContent;
+            const copyMessage = document.getElementById('copy-message');
+
+            copyBtn.addEventListener('click', () => {
+                const tempInput = document.createElement('input');
+                tempInput.value = rekeningNumber;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+                
+                copyMessage.style.display = 'block';
+                copyBtn.classList.replace('fa-copy', 'fa-check-circle');
+                setTimeout(() => {
+                    copyMessage.style.display = 'none';
+                    copyBtn.classList.replace('fa-check-circle', 'fa-copy');
+                }, 3000);
+            });
+
+            // --- 5. SAVE THE DATE FEATURE ---
+            saveDateBtn.addEventListener('click', () => {
+                // Untuk lingkungan browser yang dibatasi (seperti iFrame), membuat file ICS tidak mudah.
+                // Kita akan memberikan informasi yang bisa disalin user.
+                const eventDetails = `Acara: Akad Nikah Fadlan & Goyounjong\nTanggal: 21 Desember 2025\nWaktu: 09:00 WIB\nLokasi: Gedung Serbaguna Jakarta`;
+                
+                const tempTextarea = document.createElement('textarea');
+                tempTextarea.value = eventDetails;
+                document.body.appendChild(tempTextarea);
+                tempTextarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempTextarea);
+
+                saveDateMessage.style.display = 'block';
+                setTimeout(() => saveDateMessage.style.display = 'none', 5000);
+            });
+        });
+    </script>
+</body>
+</html>
